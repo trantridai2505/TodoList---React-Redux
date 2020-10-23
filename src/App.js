@@ -9,7 +9,7 @@ class App extends Component{
     constructor(props){
       super(props);
       this.state = {
-        tasks: [], // id, name, status
+         // id, name, status
         isDisplayForm: false,
         taskEditing: null,
         filter : {
@@ -22,24 +22,24 @@ class App extends Component{
       }
     }
     
-    // save data which don't disappear when we F5
-    componentWillMount(){
+    // save data which don't be disappeared when we F5
+    /*componentWillMount(){
       if(localStorage && localStorage.getItem('tasks')){
         var tasks = JSON.parse(localStorage.getItem('tasks'));
         this.setState({
           tasks : tasks
         });
       }
-    }
+    }*/
 
     //create random ID
-    s4(){
+    /*s4(){
       return Math.floor((1+Math.random()) * 0x10000).toString(16).substring(1);
     }
 
-    generateID(){
+   generateID(){
       return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4();
-    }
+    }*/
 
     onToggleForm = () => { //add task
       if( this.state.isDisplayForm && this.state.taskEditing !== null){ //opening Form Edit -> Form Add, Form don't be close
@@ -67,7 +67,7 @@ class App extends Component{
       });
     }
 
-    onSubmit = (data) => {
+    /*onSubmit = (data) => {
       var { tasks } = this.state;
       if(data.id === ''){
         data.id = this.generateID();
@@ -82,7 +82,7 @@ class App extends Component{
         taskEditing : null
       });
       localStorage.setItem('tasks',JSON.stringify(tasks));  
-    }
+    }*/
 
     onUpdateStatus = (id) => {
       var { tasks } = this.state;
@@ -162,15 +162,16 @@ class App extends Component{
 
     render(){
 
-      var { tasks, 
+      var { //tasks, 
             isDisplayForm, 
             taskEditing, 
-            filter, 
-            keyword,
+           // filter, 
+           // keyword,
             sortBy,
             sortValue
           } = this.state ; // var tasks = this.state.tasks
-      if(filter){
+
+      /*if(filter){
         if(filter.name){
           tasks = tasks.filter((task) => {
             return task.name.toLowerCase().indexOf(filter.name) !== -1;
@@ -204,11 +205,11 @@ class App extends Component{
               else if (a.name > b.name) return sortValue;  
               else return 0;
           });
-        }
+        }*/
 
       var elmTaskForm = isDisplayForm ? <TaskForm 
                                             onCloseForm = {this.onCloseForm} 
-                                            onSubmit = {this.onSubmit} 
+                                            //onSubmit = {this.onSubmit} 
                                             task = { taskEditing }
                                         /> 
                                       : '';
